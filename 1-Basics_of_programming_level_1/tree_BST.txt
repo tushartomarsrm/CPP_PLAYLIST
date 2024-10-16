@@ -1,0 +1,82 @@
+// Time Complexity (TC) of Binary Search Tree (BST):
+// Average Case: O(log n) for operations like insertion, searching, and deletion.
+// Worst Case: O(n) if the tree is unbalanced (e.g., resembles a linear chain).
+
+// Space Complexity (SC) of BST:
+// All Cases: O(n), as it depends on the total number of nodes in the tree, regardless of its structure.
+
+Node *insertIntoBST(Node *root, int data)
+{
+    if (root == NULL)
+    {
+        root = new Node(data);
+        return root;
+    }
+
+    if (data > root->data)
+    {
+        root->right = insertIntoBST(root->right, data);
+    }
+    else
+    {
+        root->left = insertIntoBST(root->left, data);
+    }
+
+    return root; //very IMPORTANT
+}
+
+
+//min node is the leftmost node
+//max node is the rightmost node
+
+//NOTE : order to search in bst
+==
+<
+>
+
+// Delete node in bst  
+- Find the node's in-order successor (smallest node in the right subtree) or in-order predecessor (largest node in the left subtree).
+    - Replace the node with its in-order successor or predecessor.
+
+// VERY VERY IMPORTANT
+Since Java is pass-by-value, changing the root node inside the method won't affect the original tree. 
+
+//You are correct that Java is pass-by-reference when it comes to objects, including arrays. However, it's important to note that this is a common source of confusion.
+In Java, when you pass an object (including an array) to a method, a copy of the reference to the object is passed, not the object itself. This means that both the original reference and the copy of the reference point to the same object in memory.
+So, if you modify the object's state (e.g., change an element in an array), you will see the changes reflected in the original object. However, if you reassign the reference to point to a new object (e.g., root = null), you will not see the changes reflected in the original object.
+To illustrate this, consider the following example:
+
+public class Test {
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 3};
+        modifyArray(arr);
+        System.out.println(arr[0]); // prints 10
+
+        resetArray(arr);
+        System.out.println(arr[0]); // still prints 10, not null
+    }
+    public static void modifyArray(int[] arr) {
+        arr[0] = 10;
+    }
+    public static void resetArray(int[] arr) {
+        arr = null;
+    }
+}
+
+In this example, modifyArray changes the state of the original array, so we see the changes reflected in the original array. However, resetArray reassigns the reference to null, but this does not affect the original array.
+I hope this clears up any confusion! Let me know if you have further questions.
+
+similarly this happends in c++
+When you modify the elements of the array through the pointer, you are modifying the original array. However, if you reassign the pointer to point to a new array, you are not affecting the original array.
+
+
+//- Heapify: This term typically refers to the process of building a heap from an unordered array or list. It's used to create a heap data structure from scratch.
+
+- Reheapify (or Re-heapify): This term specifically refers to the process of restoring the heap property after an element is inserted, removed, or modified. It's used to maintain the heap property after a change has occurred.
+
+In other words:
+
+- Heapify is used to build a heap from scratch.
+- Reheapify is used to repair or rebalance an existing heap after a change.
+
+
